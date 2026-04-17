@@ -1,0 +1,108 @@
+<!-- index02.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Product Details | SUPERGO Model Living Supermarket</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style02.css">
+</head>
+<body>
+<div class="bg-blur"></div>
+
+<div class="main-wrapper">
+    <!-- 导航栏（与主页完全一致） -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <img src="SUPERGO LOGO.png" alt="SUPERGO">
+        </div>
+        <div class="nav-links">
+            <a href="#" id="privacyLink">Privacy</a>
+            <span>/</span>
+            <a href="#" id="contactLink">Contact</a>
+            <span>/</span>
+            <a href="terms.html" id="termsLink">Terms</a>
+        </div>
+    </nav>
+
+    <!-- 返回箭头（固定定位） -->
+    <a href="index.html" class="back-arrow" aria-label="Back to Home">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <div class="detail-layout">
+        <div class="detail-left">
+            <div class="eye-button" id="eyeButton">Intro</div>
+        </div>
+        <div class="detail-center" id="dynamicCenter">
+            <!-- 动态内容会由js生成 -->
+        </div>
+        <div class="detail-right">
+            <div class="price" id="productPrice">¥ 99.00</div>
+            <div class="identity-selector">
+                <select id="identitySelect">
+                    <option value="human">Human</option>
+                    <option value="alien">Alien</option>
+                    <option value="lizard">Lizard Person</option>
+                    <option value="nonbinary">Non-binary</option>
+                    <option value="undefined">Undefined</option>
+                    <option value="anti-subject">Anti-subject</option>
+                </select>
+            </div>
+            <button class="buy-button" id="buyButton">Buy Now</button>
+        </div>
+    </div>
+
+    <div class="section-title">MORE PRODUCTS</div>
+
+    <div class="products-container">
+        <div class="products-grid" id="productsGrid">
+            <!-- 商品网格会由js动态生成 -->
+        </div>
+    </div>
+
+    <div class="footer-message">
+        <p>Welcome to SUPERGO, we are committed to fulfilling your every wish,<br>
+        leaving no desire unsatisfied. Every product here is flawless,<br>
+        bringing you and your family the joy of being in paradise.</p>
+        <i class="far fa-smile-wink smile-icon"></i>
+    </div>
+
+    <div class="contact-info">
+        <a href="#" class="contact-item"><i class="fab fa-instagram"></i> @supergo_official</a>
+        <a href="#" class="contact-item"><i class="fab fa-tiktok"></i> @supergo_tiktok</a>
+        <a href="#" class="contact-item"><i class="fas fa-phone-alt"></i> +86 XXX-XXXX-XXXX</a>
+        <a href="#" class="contact-item"><i class="fas fa-envelope"></i> contact@supergo.model</a>
+    </div>
+</div>
+
+<!-- 信息浮层 -->
+<div id="infoOverlay" class="info-overlay" style="display: none;">
+    <div class="info-content">
+        <div class="close-info" id="closeInfoBtn">&times;</div>
+        <div class="info-text" id="infoText">
+            <!-- 动态商品说明会由js填充 -->
+        </div>
+    </div>
+</div>
+
+<!-- 购买成功弹窗 -->
+<div id="purchaseModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-close" id="modalCloseBtn">&times;</div>
+        <div class="modal-text">
+            Your purchase has been successful! We will ship within 1-7 business days.<br>
+            Thank you for trusting SUPERGO. We provide only the most perfect products for you!
+        </div>
+        <div class="modal-image">
+            <img src="电视人_第六幕.png" alt="SUPERGO Mascot">
+        </div>
+        <button class="modal-ok" id="modalOkBtn">OK</button>
+    </div>
+</div>
+
+<script src="script02.js"></script>
+</body>
+</html>

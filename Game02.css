@@ -1,0 +1,314 @@
+/* Game02.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    position: relative;
+    background-image: url('对话游戏/网页背景.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 背景轻微模糊 + 变暗 (伪元素叠加) */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    z-index: -1;
+}
+
+/* 游戏窗口容器 */
+.game-container {
+    position: relative;
+    width: 1200px;
+    height: 700px;
+    border-radius: 8px;
+    box-shadow: 0 25px 40px rgba(0,0,0,0.4);
+    background: #2c3e2f;
+    overflow: hidden;
+    z-index: 1;
+    margin: 0 auto;
+}
+
+/* 蓝色顶部栏 */
+.top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 45px;
+    background-color: #005FF7;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+/* SUPERGO 图标 */
+.top-logo {
+    height: 28px;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
+/* 喇叭按钮 - 白色图标 */
+.sound-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 15;
+    transition: 0.2s;
+    background: none;
+    backdrop-filter: none;
+    border-radius: 0;
+    width: auto;
+    height: auto;
+    position: static;
+}
+
+.sound-toggle i {
+    font-size: 24px;
+    color: #ffffff;          /* 改为白色 */
+}
+
+.sound-toggle:hover {
+    transform: scale(1.1);
+    background: none;
+}
+
+/* 场景背景层 */
+.scene-bg {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 45px);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
+
+/* 人物容器 */
+.character-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: 65%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.character-img {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    transition: opacity 0.4s ease;
+    opacity: 1;
+}
+
+/* 对话框区域 */
+.dialogue-box {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 800px;
+    height: 180px;
+    background: #E1E1E1;
+    border-radius: 0;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000000 #001D58 #001D58 #000000;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    padding: 20px 28px;
+    z-index: 3;
+    overflow-y: auto;
+}
+
+.dialogue-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #000000;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* 回答按钮 - 与对话框字体一致（非粗体） */
+.answer-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #E1E1E1;
+    border: 2px solid;
+    border-color: #000000 #001D58 #001D58 #000000;
+    border-radius: 0;
+    padding: 12px 32px;          /* 调整内边距，更协调 */
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;             /* 略小于对话框文字，保持协调 */
+    font-weight: 500;            /* 与对话框一致，非粗体 */
+    color: #000000;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    z-index: 10;
+    white-space: nowrap;
+}
+
+.answer-btn:hover {
+    background: #c9c9c9;
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+}
+
+/* 开始按钮覆盖层 */
+.start-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    transition: opacity 0.3s ease;
+}
+
+.start-overlay.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* 开始按钮 - 与对话框/回答按钮样式统一 */
+.start-btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 500;            /* 与对话框一致 */
+    padding: 16px 48px;
+    background: #E1E1E1;
+    border: 2px solid;
+    border-color: #000000 #001D58 #001D58 #000000;
+    border-radius: 0;
+    color: #000000;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    letter-spacing: normal;
+}
+
+.start-btn:hover {
+    background: #c9c9c9;
+    transform: scale(1.05);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+}
+
+.start-btn:active {
+    transform: scale(0.98);
+}
+
+/* 响应式调整 */
+@media (max-width: 1100px) {
+    .game-container {
+        width: 95%;
+        height: auto;
+        aspect-ratio: 1200 / 700;
+    }
+    .dialogue-box {
+        width: 85%;
+        height: 160px;
+        padding: 18px 24px;
+    }
+    .dialogue-text {
+        font-size: 16px;
+    }
+    .answer-btn {
+        font-size: 18px;
+        padding: 10px 28px;
+    }
+    .start-btn {
+        font-size: 24px;
+        padding: 14px 40px;
+    }
+    .top-bar {
+        height: 40px;
+    }
+    .top-logo {
+        height: 24px;
+    }
+    .scene-bg {
+        top: 40px;
+        height: calc(100% - 40px);
+    }
+    .sound-toggle i {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 800px) {
+    .dialogue-box {
+        height: 150px;
+        padding: 16px 20px;
+    }
+    .dialogue-text {
+        font-size: 14px;
+    }
+    .answer-btn {
+        font-size: 16px;
+        padding: 8px 24px;
+        white-space: normal;
+        min-width: 180px;
+    }
+    .character-wrapper {
+        height: 55%;
+    }
+    .start-btn {
+        font-size: 20px;
+        padding: 12px 32px;
+    }
+    .top-bar {
+        height: 38px;
+    }
+    .top-logo {
+        height: 22px;
+    }
+    .scene-bg {
+        top: 38px;
+        height: calc(100% - 38px);
+    }
+    .sound-toggle i {
+        font-size: 20px;
+    }
+}

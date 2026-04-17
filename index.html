@@ -1,0 +1,174 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SUPERGO | 模范生活超市</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 加载页面（Loading Screen） -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-divider top-divider"></div>
+        <div class="loading-content">
+            <img src="SUPERGO LOGO.png" alt="SUPERGO" class="loading-logo">
+            <div class="loading-animation-container">
+                <img id="loadingAnimationImg" src="电视人加载动作1.png" alt="loading animation">
+            </div>
+            <div class="loading-bar-container">
+                <div class="loading-bar"></div>
+            </div>
+        </div>
+        <div class="loading-divider bottom-divider"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <img src="SUPERGO LOGO.png" alt="SUPERGO">
+        </div>
+        <div class="nav-links">
+            <a href="#">Privacy</a>
+            <span>/</span>
+            <a href="#">Contact</a>
+            <span>/</span>
+            <a href="#">Terms</a>
+        </div>
+    </nav>
+
+    <!-- 主要滚动区域（左侧文本 + 右侧滚动商品） -->
+    <div class="main-scroll-area">
+        <div class="text-list" id="textList"></div>
+        <div class="right-columns">
+            <div class="scroll-col" id="col1"></div>
+            <div class="scroll-col" id="col2"></div>
+            <div class="scroll-col" id="col3"></div>
+        </div>
+    </div>
+
+    <!-- 分隔条1（红色背景，滚动SUPERGO图标） -->
+    <div class="divider black-divider"></div>
+
+    <!-- 红色购物指南区域 -->
+    <div class="guide-section">
+        <div class="guide-left">
+            <div class="guide-title">SUPERGO<br>SHOPPING GUIDE</div>
+            <div class="guide-description">
+                Click to play the SUPERGO Shopping Guide and get a quick introduction to SUPERGO. If you're already a SUPERGO superfan, feel free to skip.
+            </div>
+        </div>
+        <div class="guide-right">
+            <video controls width="100%" poster="视频封面.png">
+                <source src="SUPERGO购物指南.mp4" type="video/mp4">
+                您的浏览器不支持 video 标签。
+            </video>
+        </div>
+    </div>
+
+    <!-- 分隔条2（黑色背景，滚动SUPERGO图标） -->
+    <div class="divider red-divider"></div>
+
+    <!-- 黑色简介区（Grid布局） -->
+    <div class="intro-section">
+        <div class="founder-title">Founder's<br>Biography</div>
+        <div></div>
+        <div class="intro-photo-wrapper">
+            <img src="简介照片.png" alt="Weijie Huang" class="intro-photo">
+        </div>
+        <div class="intro-right">
+            <div class="intro-text-group">
+                <div class="subtitle">Growth & Achievements</div>
+                <div class="text-row">
+                    <div class="intro-text">
+                        Weijie Huang grew up in a strict family where his parents demanded he become a doctor. But he secretly loved nature—watching seeds sprout, bees dance, and fungi network underground. After earning dual doctorates in AI and Biomedical Science from MIT, he felt hollow inside. So he disappeared for two years, traveling to remote villages and rainforests, studying how traditional foods affect human emotion. When he returned, he founded SUPERGO with a mission: create food that heals the spirit, not just the body.
+                    </div>
+                    <div class="intro-text">
+                        His breakthrough came when he merged AI with food science. Using genomic sequencing and molecular modeling, SUPERGO developed “Emotion-Adaptive Nutrition”—products like “Anxiety Fizz” that help calm users within minutes. The market loved it. Within three years, SUPERGO became a global brand. Today, SUPERGO has research outposts on the Moon and Mars, growing optimized crops in biodomes. Their products are standard on space flights and beloved by extraterrestrial colonists. From Tokyo to Titan, SUPERGO proves that science can serve the human heart.
+                    </div>
+                </div>
+            </div>
+            <div class="intro-text-group">
+                <div class="subtitle">Future Vision</div>
+                <div class="text-row">
+                    <div class="intro-text">
+                        SUPERGO’s future has three pillars. First, “Bio-Planetary Integration”: using CRISPR to grow crops on alien soil. Second, “Emotional AI Sommeliers”: wearables that monitor your hormones and suggest the perfect product in real time. Third, “The Open Pantry Initiative”: an interplanetary open-source platform for recipes and emotional feedback.
+                    </div>
+                    <div class="intro-text">
+                        Beyond technology, Dr. Huang dreams of ending food scarcity and nutritional injustice. He wants SUPERGO to heal the broken relationship between humanity and nature. “My parents wanted me to fix people one at a time,” he reflects. “Now, I want to fix the way people eat—and in doing so, fix something much larger.” In the next decade, he plans to launch a self-sustaining SUPERGO farm on Mars—a gift to future generations, and proof that even from an unhappy childhood, something beautiful can grow.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 分隔条3（黑色背景，滚动SUPERGO图标） -->
+    <div class="divider gray-divider"></div>
+
+    <!-- 信息区（Contact Section）毛玻璃背景 + 浮现动画 + 邮件表单 -->
+    <div class="contact-section" id="contactSection">
+        <!-- 左侧：原有联系文本 -->
+        <div class="contact-left">
+            <div class="contact-title">How to contact us</div>
+            <div class="contact-info-bottom">
+                <div class="contact-grid">
+                    <div class="contact-col">
+                        <div class="contact-item"><i class="fas fa-envelope"></i> contact@supergo.model</div>
+                        <div class="contact-item"><i class="fas fa-phone-alt"></i> +86 XXX-XXXX-XXXX</div>
+                    </div>
+                    <div class="contact-col">
+                        <div class="contact-item"><i class="fab fa-tiktok"></i> @supergo_tiktok</div>
+                        <div class="contact-item"><i class="fab fa-instagram"></i> @supergo_official</div>
+                    </div>
+                </div>
+                <div class="contact-locations">
+                    <div class="location"><i class="fas fa-map-marker-alt"></i> Changsha, China</div>
+                    <div class="location"><i class="fas fa-map-marker-alt"></i> London, UK</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧：邮件表单区 -->
+        <div class="contact-form">
+            <div class="form-group">
+                <input type="text" id="nameInput" placeholder="Name" class="form-input">
+            </div>
+            <div class="form-group">
+                <input type="text" id="subjectInput" placeholder="Subject" class="form-input">
+            </div>
+            <div class="form-group">
+                <textarea id="messageInput" placeholder="Message" rows="5" class="form-textarea"></textarea>
+            </div>
+            <button id="sendBtn" class="send-btn" disabled>Send</button>
+        </div>
+    </div>
+
+    <!-- 信息区底部黑色分隔条 -->
+    <div class="divider footer-divider"></div>
+
+    <!-- 弹窗模态框 -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>您的邮件已成功发送！</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>SUPERGO客服将会在1-7个工作日内<br>将回复邮件发送到您的邮箱，<br>请您耐心等待！</p>
+                <img src="电视人_第六幕.png" alt="电视人" class="modal-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- 右下角浮动广告：整体反相（文字、箭头、图片均反相），点击跳转Game.html -->
+    <div class="floating-ad" id="floatingAd">
+        <span class="floating-text">Click</span>
+        <i class="fas fa-arrow-right floating-arrow"></i>
+        <img src="浮动小广告.png" alt="ad" class="floating-img">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

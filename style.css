@@ -1,0 +1,898 @@
+/* style.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #E9E9EA;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+    /* 自定义鼠标指针 */
+    cursor: url('手指.png'), auto;
+}
+
+/* ========== 加载页面（Loading Screen） ========== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FF1010;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+
+.loading-divider {
+    width: 100%;
+    height: 40px;
+    background-color: #FF1010;
+    background-image: url('SUPERGO LOGO.png');
+    background-repeat: repeat-x;
+    background-position: center;
+    background-size: auto 30px;
+    animation: scrollLogo 20s linear infinite;
+}
+
+.loading-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.loading-logo {
+    max-height: 40px;
+    width: auto;
+}
+
+.loading-animation-container {
+    width: 150px;
+    margin: 0 auto;
+}
+
+.loading-animation-container img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    display: block;
+}
+
+.loading-bar-container {
+    width: 300px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.loading-bar {
+    width: 30%;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    animation: loadingMove 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingMove {
+    0% { transform: translateX(-100%); width: 30%; }
+    50% { transform: translateX(200%); width: 60%; }
+    100% { transform: translateX(-100%); width: 30%; }
+}
+
+/* ========== 导航栏（完全透明 + 反色文字） ========== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    z-index: 200;
+    background: transparent;
+    backdrop-filter: none;
+    mix-blend-mode: difference;
+    color: white;
+}
+
+.nav-logo img {
+    max-height: 40px;
+    width: auto;
+    display: block;
+    filter: brightness(0) invert(1);
+}
+
+.nav-links {
+    display: flex;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+.nav-links span {
+    color: white;
+    opacity: 0.6;
+}
+
+/* ========== 主滚动区域（左侧+右侧）增加移动的圆形背景 ========== */
+.main-scroll-area {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background-color: #FFC60B;
+}
+
+.main-scroll-area::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at center, #FFD857 20%, transparent 20.5%);
+    background-size: 60px 60px;
+    background-repeat: repeat;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+    animation: moveCircles 5s linear infinite;
+}
+
+@keyframes moveCircles {
+    0% { background-position: 0 0; }
+    100% { background-position: 60px 60px; }
+}
+
+.text-list, .right-columns {
+    position: relative;
+    z-index: 1;
+}
+
+.text-list {
+    flex: 1;
+    padding: 80px 40px 20px 60px;
+    overflow-y: auto;
+    max-height: 100vh;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.text-list::-webkit-scrollbar {
+    display: none;
+}
+
+.text-item {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.text-number {
+    font-size: 14px;
+    font-weight: 600;
+    color: #D0A517;
+    letter-spacing: -0.3px;
+    width: 35px;
+    flex-shrink: 0;
+}
+
+.text-name {
+    font-size: 22px;
+    font-weight: 600;
+    color: #D0A517;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.text-name:hover {
+    color: #563B00 !important;
+    transform: scale(1.02);
+    animation: shakeVertical 0.3s ease-in-out;
+}
+
+.text-name.highlight-product {
+    color: #563B00 !important;
+    transform: scale(1.02);
+    animation: shakeVertical 0.3s ease-in-out;
+}
+
+@keyframes shakeVertical {
+    0% { transform: translateY(0) scale(1.02); }
+    25% { transform: translateY(-2px) scale(1.02); }
+    75% { transform: translateY(2px) scale(1.02); }
+    100% { transform: translateY(0) scale(1.02); }
+}
+
+.special-text {
+    color: #D0A517;
+}
+
+.clickable-text {
+    cursor: pointer;
+}
+
+.right-columns {
+    flex: 2;
+    display: flex;
+    gap: 24px;
+    padding: 0 40px 0 20px;
+    align-items: flex-start;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.scroll-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+}
+
+.scroll-col img {
+    width: 100%;
+    border-radius: 16px;
+    display: block;
+    margin-bottom: 24px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    filter: drop-shadow(0 0 0 rgba(0,0,0,0));
+    opacity: 0.5;
+}
+
+.scroll-col img:hover {
+    transform: scale(1.02);
+    filter: drop-shadow(0 0 6px #ffd966) drop-shadow(0 0 4px #f9b81b);
+    opacity: 1;
+}
+
+@keyframes scrollUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+
+.scroll-inner {
+    animation: scrollUp 40s linear infinite;
+}
+
+.scroll-col:hover .scroll-inner {
+    animation-play-state: paused;
+}
+
+#col1 .scroll-inner { animation-delay: 0s; }
+#col2 .scroll-inner { animation-delay: -12s; }
+#col3 .scroll-inner { animation-delay: -24s; }
+
+/* ========== 分隔条 ========== */
+.divider {
+    height: 40px;
+    overflow: hidden;
+    position: relative;
+    background-repeat: repeat-x;
+    background-position: center;
+    animation: scrollLogo 20s linear infinite;
+    background-size: auto 30px;
+}
+
+.black-divider {
+    background-color: #FF1010;
+    background-image: url('SUPERGO LOGO.png');
+}
+
+.red-divider {
+    background-color: #000000;
+    background-image: url('SUPERGO LOGO.png');
+}
+
+.gray-divider {
+    background-color: #000000;
+    background-image: url('SUPERGO LOGO.png');
+}
+
+/* 新增信息区底部黑色分隔条 */
+.footer-divider {
+    background-color: #000000;
+    background-image: url('SUPERGO LOGO.png');
+}
+
+@keyframes scrollLogo {
+    0% { background-position: 0 50%; }
+    100% { background-position: -200px 50%; }
+}
+
+/* ========== 红色购物指南区域 ========== */
+.guide-section {
+    background-color: #FF1010;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    padding: 120px 60px;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.guide-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.guide-title {
+    font-size: 64px;
+    font-weight: 800;
+    color: #000000;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.guide-description {
+    font-size: 22px;
+    font-weight: 500;
+    color: #000000;
+    line-height: 1.4;
+    margin-top: auto;
+    max-width: 100%;
+}
+
+.guide-right {
+    flex: 2;
+    max-width: 66.666%;
+    display: flex;
+    align-items: flex-start;
+}
+
+.guide-right video {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+    display: block;
+    cursor: pointer;
+}
+
+/* ========== 黑色简介区 ========== */
+.intro-section {
+    background-color: #000000;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 60px;
+    padding: 120px 60px;
+    align-items: start;
+}
+
+.founder-title {
+    font-size: 64px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.intro-section > :nth-child(2) {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+.intro-photo-wrapper {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    width: 200px;
+}
+
+.intro-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    display: block;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.intro-right {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.intro-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.subtitle {
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: -0.3px;
+}
+
+.text-row {
+    display: flex;
+    gap: 40px;
+}
+
+.intro-text {
+    flex: 1;
+    font-size: 22px;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 1.5;
+    letter-spacing: -0.2px;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+.intro-text-group:hover .intro-text {
+    opacity: 1;
+}
+
+/* ========== 信息区（Contact Section）毛玻璃背景 + 浮现动画 ========== */
+.contact-section {
+    position: relative;
+    background-color: transparent;
+    color: #ffffff;
+    padding: 160px 60px;
+    min-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    gap: 80px;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+/* 毛玻璃背景层 */
+.contact-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('合照.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(12px);
+    z-index: -2;
+}
+
+.contact-section::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+}
+
+/* 左侧区域：使用 flex 列，让标题在顶部，联系信息在底部 */
+.contact-left {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+/* 右侧表单区域 */
+.contact-form {
+    flex: 1;
+    min-width: 280px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 32px;
+    padding: 32px 28px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 14px 18px;
+    background: white;
+    border: none;
+    border-radius: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #1e1e1e;
+    outline: none;
+    transition: box-shadow 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.send-btn {
+    width: 100%;
+    padding: 14px;
+    background: #cccccc;
+    border: none;
+    border-radius: 40px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #666;
+    cursor: not-allowed;
+    transition: all 0.2s ease;
+    margin-top: 8px;
+}
+
+.send-btn.active {
+    background: #000000;
+    color: white;
+    cursor: pointer;
+}
+
+.send-btn.active:hover {
+    transform: scale(1.02);
+    background: #222;
+}
+
+/* 标题样式 */
+.contact-title {
+    font-size: 64px;
+    font-weight: 800;
+    margin-bottom: 0;
+    letter-spacing: -1px;
+    opacity: 1;
+}
+
+/* 联系信息（底部内容） */
+.contact-info-bottom {
+    margin-top: auto;
+}
+
+/* 动画初始状态：隐藏 + 下移 */
+.contact-grid,
+.contact-locations,
+.contact-form {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+/* 当信息区进入视口时，添加此类触发浮现 */
+.contact-section.animate-in .contact-grid,
+.contact-section.animate-in .contact-locations,
+.contact-section.animate-in .contact-form {
+    opacity: 0.6;
+    transform: translateY(0);
+}
+
+/* 悬停时透明度变为1（保持白色） */
+.contact-item,
+.location {
+    transition: opacity 0.2s ease;
+    opacity: 0.6;
+    color: #ffffff;
+}
+
+.contact-item:hover,
+.location:hover {
+    opacity: 1;
+}
+
+/* 保持原有网格样式，颜色强制白色 */
+.contact-grid {
+    display: flex;
+    justify-content: flex-start;
+    gap: 60px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.contact-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contact-item {
+    font-size: 22px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ffffff;
+}
+
+.contact-item i {
+    width: 32px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.contact-locations {
+    display: flex;
+    justify-content: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.location {
+    font-size: 22px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ffffff;
+}
+
+.location i {
+    font-size: 22px;
+}
+
+/* ========== 模态框样式 ========== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.2s, opacity 0.2s;
+}
+
+.modal-overlay.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-container {
+    background: white;
+    border-radius: 32px;
+    width: 90%;
+    max-width: 520px;
+    padding: 32px 28px 40px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.modal-header h2 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1e1e1e;
+    letter-spacing: -0.3px;
+}
+
+.modal-close {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    font-size: 32px;
+    font-weight: 300;
+    cursor: pointer;
+    color: black;
+    background: transparent;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.modal-close:hover {
+    background: #f0f0f0;
+}
+
+.modal-body p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 24px;
+}
+
+.modal-img {
+    max-width: 80%;
+    height: auto;
+    margin-top: 16px;
+}
+
+/* ========== 右下角浮动广告：整体反相（文字、箭头、图片均反相） ========== */
+.floating-ad {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    z-index: 1000;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    mix-blend-mode: difference;
+    color: white;
+}
+
+.floating-ad:hover {
+    transform: scale(1.05);
+}
+
+.floating-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.floating-arrow {
+    font-size: 32px;
+    transform: rotate(-45deg);
+}
+
+.floating-img {
+    height: 48px;
+    width: auto;
+    display: block;
+}
+
+/* ========== 响应式调整 ========== */
+@media (max-width: 1100px) {
+    .text-name { font-size: 18px; }
+    .text-number { font-size: 12px; width: 30px; }
+    .special-text { font-size: 18px; }
+    .right-columns { gap: 16px; padding-right: 20px; }
+    .guide-title { font-size: 48px; }
+    .guide-description { font-size: 18px; }
+    .founder-title { font-size: 48px; }
+    .intro-text { font-size: 18px; }
+    .subtitle { font-size: 18px; }
+    .contact-title { font-size: 48px; margin-bottom: 0; }
+    .contact-item { font-size: 18px; }
+    .contact-item i { font-size: 18px; width: 28px; }
+    .location { font-size: 18px; }
+    .location i { font-size: 18px; }
+    .contact-grid { gap: 45px; margin-bottom: 30px; }
+    .contact-col { gap: 12px; }
+    .contact-locations { gap: 30px; }
+    .contact-section { padding: 120px 40px; gap: 50px; }
+    .floating-ad { bottom: 30px; right: 30px; gap: 10px; }
+    .floating-text { font-size: 28px; }
+    .floating-arrow { font-size: 28px; }
+    .floating-img { height: 40px; }
+    .modal-header h2 { font-size: 24px; }
+    .modal-body p { font-size: 16px; }
+}
+
+@media (max-width: 800px) {
+    .main-scroll-area { flex-direction: column; }
+    
+    .text-list {
+        padding: 60px 30px 20px;
+        max-height: none;
+        overflow-y: visible;
+    }
+    
+    .right-columns {
+        position: relative;
+        height: 400px;
+        top: 0;
+        margin-top: 20px;
+        width: 100%;
+        padding: 0 20px;
+        overflow: hidden;
+    }
+    
+    /* 关键修复：使用 mask 实现顶部渐变消失，无切割线 */
+    .scroll-col {
+        height: 400px;
+        -webkit-mask-image: linear-gradient(to bottom, transparent, #000 60px);
+        mask-image: linear-gradient(to bottom, transparent, #000 60px);
+        -webkit-mask-composite: source-over;
+        mask-composite: source-over;
+    }
+    
+    /* 移除之前的伪元素渐变遮罩，避免重复 */
+    .right-columns::before {
+        display: none;
+    }
+    
+    /* 手机导航栏优化 */
+    .navbar {
+        padding: 12px 20px;
+    }
+    .nav-logo img {
+        max-height: 24px;
+    }
+    .nav-links {
+        display: none;
+    }
+    
+    .text-name { font-size: 16px; }
+    .text-number { font-size: 11px; width: 28px; }
+    .special-text { font-size: 16px; }
+    .guide-section { flex-direction: column; padding: 80px 30px; text-align: left; }
+    .guide-left { width: 100%; }
+    .guide-right { max-width: 100%; margin-top: 30px; }
+    .guide-title { font-size: 36px; }
+    .guide-description { font-size: 16px; margin-top: 20px; }
+    .guide-right { align-items: center; }
+    .intro-section { display: flex; flex-direction: column; padding: 80px 30px; gap: 30px; }
+    .intro-photo-wrapper { width: 150px; margin-bottom: 0; }
+    .intro-right { width: 100%; }
+    .text-row { flex-direction: column; gap: 20px; }
+    .intro-text { font-size: 16px; }
+    .subtitle { font-size: 16px; }
+    .founder-title { font-size: 36px; margin-bottom: 0; }
+    .divider { height: 30px; background-size: auto 24px; }
+    .contact-section { flex-direction: column; padding: 100px 30px; gap: 48px; }
+    .contact-title { font-size: 36px; margin-bottom: 35px; }
+    .contact-grid { gap: 30px; margin-bottom: 25px; }
+    .contact-col { gap: 10px; }
+    .contact-item { font-size: 16px; }
+    .contact-item i { font-size: 16px; width: 24px; }
+    .location { font-size: 16px; }
+    .location i { font-size: 16px; }
+    .contact-locations { gap: 25px; }
+    .floating-ad { bottom: 20px; right: 20px; gap: 8px; }
+    .floating-text { font-size: 24px; }
+    .floating-arrow { font-size: 24px; }
+    .floating-img { height: 32px; }
+    .contact-form { padding: 24px 20px; }
+    .modal-container { padding: 24px 20px 32px; width: 90%; }
+    .modal-header h2 { font-size: 22px; }
+}

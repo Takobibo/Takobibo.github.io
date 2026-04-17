@@ -1,0 +1,853 @@
+/* style03.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', 'Roboto', sans-serif;
+    background: #f5e6b0;
+    overflow-x: hidden;
+}
+
+/* 斜向弥散渐变背景 */
+.bg-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: radial-gradient(circle at 30% 40%, #FFD966, #366FFF);
+    background-size: 200% 200%;
+    animation: gradientShift 12s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* 导航栏（与主页完全一致） */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    z-index: 200;
+    background: transparent;
+    backdrop-filter: none;
+    mix-blend-mode: difference;
+    color: white;
+}
+
+.nav-logo img {
+    max-height: 40px;
+    width: auto;
+    display: block;
+    filter: brightness(0) invert(1);
+}
+
+.nav-links {
+    display: flex;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+.nav-links span {
+    color: white;
+    opacity: 0.6;
+}
+
+/* 进入动画遮罩层 - 左下角 */
+.intro-overlay {
+    position: fixed;
+    bottom: 60px;
+    left: 30px;
+    top: auto;
+    right: auto;
+    width: auto;
+    height: auto;
+    background: transparent;
+    z-index: 2000;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+.intro-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 96px;
+    color: white;
+    letter-spacing: -1px;
+    filter: blur(1.2px);
+    text-align: left;
+    background: transparent;
+    line-height: 1.2;
+    white-space: normal;
+    max-width: 600px;
+}
+
+/* 主容器 */
+.main-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 40px 30px;
+    min-height: 100vh;
+    position: relative;
+    gap: 30px;
+}
+
+/* 返回箭头 */
+.back-arrow {
+    position: absolute;
+    top: 90px;
+    left: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 72px;
+    color: white;
+    letter-spacing: -1px;
+    filter: blur(0.6px);
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    display: inline-block;
+    line-height: 1;
+    text-decoration: none;
+    z-index: 101;
+}
+
+.back-arrow:hover {
+    transform: scale(1.05);
+    animation: arrowShake 0.2s ease-in-out 0s 2;
+}
+
+@keyframes arrowShake {
+    0% { transform: translateX(0) scale(1.05); }
+    25% { transform: translateX(-3px) scale(1.05); }
+    75% { transform: translateX(3px) scale(1.05); }
+    100% { transform: translateX(0) scale(1.05); }
+}
+
+/* 左侧固定区域容器（初始隐藏） */
+.left-fixed {
+    position: fixed;
+    left: 30px;
+    top: 180px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    z-index: 150;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+/* 横向聊天容器 */
+.chat-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+}
+
+/* 左侧头像区域 */
+.avatar-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    width: 70px;
+}
+
+.avatar-small {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.6);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.character-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    letter-spacing: 0.5px;
+    background: none;
+    backdrop-filter: none;
+}
+
+/* 对话框 */
+.dialog-box {
+    position: relative;
+    background: #E9E9EA;
+    border-radius: 20px;
+    padding: 14px 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border: 1px solid rgba(0,0,0,0.05);
+    overflow: visible;
+    width: 200px;
+    flex-shrink: 0;
+}
+
+.dialog-box::after {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 10px 8px 0;
+    border-color: transparent #E9E9EA transparent transparent;
+    filter: drop-shadow(-1px 0 1px rgba(0,0,0,0.05));
+}
+
+.dialog-text {
+    font-size: 13px;
+    line-height: 1.45;
+    color: #000000;
+    font-weight: 500;
+    white-space: pre-wrap;
+    word-break: break-word;
+    text-shadow: none;
+}
+
+/* 中间区域 */
+.center-area {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    margin-left: 320px;
+}
+
+.carousel-section {
+    width: 100%;
+    position: relative;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 80px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 冰箱外壳遮罩层 */
+.fridge-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 30;
+    background: transparent;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+    border-radius: 32px;
+    overflow: hidden;
+}
+
+.fridge-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* 透明底提醒图片 */
+.reminder-image {
+    position: absolute;
+    right: -350px;
+    top: 10%;
+    width: 300px;
+    z-index: 25;
+    animation: sway 3s ease-in-out infinite;
+    background: transparent;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+}
+
+.reminder-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@keyframes sway {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+}
+
+/* 透明底大头像 */
+.large-avatar {
+    position: absolute;
+    top: -70px;
+    left: -30px;
+    width: 160px;
+    z-index: 20;
+    animation: sway 3s ease-in-out infinite;
+    background: transparent;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.large-avatar img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 贴纸容器 */
+.stickers-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sticker {
+    position: absolute;
+    width: 160px;
+    background: transparent;
+    animation: sway 3s ease-in-out infinite;
+}
+
+.sticker img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 32px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    transition: opacity 0.4s ease;
+}
+
+.carousel-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #f0f0f0;
+    transition: opacity 0.4s ease;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: white;
+    font-size: 32px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+}
+
+.carousel-arrow:hover {
+    background: rgba(0,0,0,0.8);
+    transform: translateY(-50%) scale(1.05);
+}
+
+.left-arrow {
+    left: -60px;
+}
+
+.right-arrow {
+    right: -60px;
+}
+
+.progress-bar-container {
+    width: 60%;
+    height: 6px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px auto 0;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #ffd966;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.event-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.event-info {
+    width: 100%;
+    text-align: left;
+    color: white;
+}
+
+.event-title {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: white;
+    letter-spacing: -0.5px;
+    text-align: center;
+    filter: blur(0.6px);
+}
+
+.event-description {
+    font-size: 14px;
+    line-height: 1.6;
+    background: transparent;
+    backdrop-filter: none;
+    border-radius: 0;
+    padding: 0;
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ffd966 transparent;
+    color: white;
+}
+
+.event-description::-webkit-scrollbar {
+    width: 6px;
+}
+
+.event-description::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+
+.event-description::-webkit-scrollbar-thumb {
+    background: #ffd966;
+    border-radius: 10px;
+}
+
+.event-description::-webkit-scrollbar-button {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    appearance: none;
+}
+
+.event-description p {
+    margin-bottom: 15px;
+}
+
+.join-button {
+    background: linear-gradient(135deg, #ffd966, #ffc107);
+    border: none;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 14px 48px;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.1);
+    letter-spacing: 2px;
+    margin-top: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.join-button:hover {
+    transform: scale(1.05);
+    animation: btnShake 0.2s ease-in-out 0s 2;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.4);
+}
+
+@keyframes btnShake {
+    0% { transform: translateX(0) scale(1.05); }
+    25% { transform: translateX(-3px) scale(1.05); }
+    75% { transform: translateX(3px) scale(1.05); }
+    100% { transform: translateX(0) scale(1.05); }
+}
+
+.footer-section {
+    width: 100%;
+}
+
+.footer-message {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+    filter: blur(0.6px);
+}
+
+.footer-message p {
+    margin-bottom: 12px;
+}
+
+.smile-icon {
+    font-size: 28px;
+    color: white;
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+.smile-icon:hover {
+    transform: scale(1.1);
+}
+
+.contact-info {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    filter: blur(0.6px);
+}
+
+.contact-item {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.contact-item i {
+    font-size: 16px;
+}
+
+.contact-item:hover {
+    opacity: 0.8;
+}
+
+/* 右侧区域（初始隐藏，冰箱打开后显示） */
+.right-area {
+    flex: 0 0 auto;
+    width: 320px;
+    align-self: flex-start;
+    position: sticky;
+    top: 120px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 20px;
+    filter: blur(0.6px);
+}
+
+.section-title-main,
+.section-title-sub {
+    font-size: 28px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.product-scroll-container {
+    height: auto;
+    max-height: 600px;
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+}
+
+.product-scroll-list {
+    display: flex;
+    flex-direction: column;
+    animation: scrollProducts 20s linear infinite;
+}
+
+.product-scroll-list:hover {
+    animation-play-state: paused;
+}
+
+.product-item {
+    width: 100%;
+    margin: 12px 0;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.product-item img {
+    width: 80%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 16px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+    background: transparent;
+}
+
+.product-item:hover {
+    transform: scale(1.05);
+}
+
+@keyframes scrollProducts {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+
+/* 背景音乐控制按钮 */
+.music-control {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    font-size: 72px;
+    color: white;
+    filter: blur(0.6px);
+    cursor: pointer;
+    z-index: 1000;
+    background: transparent;
+    transition: opacity 0.5s ease, transform 0.2s ease;
+    opacity: 0;
+}
+
+.music-control:hover {
+    transform: scale(1.05);
+}
+
+/* ========== 手机端专用样式（max-width: 800px） ========== */
+@media (max-width: 800px) {
+    /* 导航栏手机端隐藏文字链接，缩小logo */
+    .navbar {
+        padding: 12px 20px;
+    }
+    .nav-logo img {
+        max-height: 28px;
+    }
+    .nav-links {
+        display: none;
+    }
+
+    /* 主容器布局 */
+    .main-container {
+        flex-direction: column;
+        padding: 20px 15px;
+        gap: 30px;
+    }
+
+    /* 让center-area正常排列 */
+    .center-area {
+        margin-left: 0;
+        gap: 50px;
+        width: 100%;
+    }
+
+    /* left-fixed 初始完全隐藏（不占位），冰箱打开后由JS设为block */
+    .left-fixed {
+        position: static;
+        width: 100%;
+        margin: 0;
+        display: none;          /* 初始不显示且不占位 */
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* 右侧区域在手机端由JS移动到 .center-area 内并始终显示，此处样式仅作后备 */
+    .right-area {
+        width: 100%;
+        position: static;
+        margin-top: 20px;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* 冰箱容器向下移动，避免与箭头重叠 */
+    .carousel-container {
+        margin-top: 120px;      /* 增加上边距，拉开与返回箭头的距离 */
+        max-width: 100%;
+    }
+
+    /* 隐藏左右箭头和提醒图片 */
+    .carousel-arrow,
+    .reminder-image {
+        display: none;
+    }
+
+    /* 返回箭头位置调整 */
+    .back-arrow {
+        top: 60px;
+        left: 15px;
+        font-size: 42px;
+    }
+
+    /* 悬浮贴纸和大头像尺寸缩小 */
+    .large-avatar {
+        width: 80px;
+        top: -30px;
+        left: -10px;
+    }
+    .sticker {
+        width: 80px;
+    }
+    .sticker img {
+        max-width: 100%;
+    }
+
+    /* 进入动画文字和音乐按钮在手机端适当缩小 */
+    .intro-text {
+        font-size: 48px;
+        filter: blur(0.8px);
+    }
+    .music-control {
+        font-size: 48px;
+        bottom: 20px;
+        left: 20px;
+    }
+
+    /* 聊天容器 */
+    .chat-container {
+        width: 100%;
+        gap: 15px;
+        justify-content: center;
+    }
+    .avatar-area {
+        width: 60px;
+        flex-shrink: 0;
+    }
+    .avatar-small {
+        width: 50px;
+        height: 50px;
+    }
+    .character-name {
+        font-size: 12px;
+    }
+    /* 对话框固定高度，能完整显示David文本（250px足够） */
+    .dialog-box {
+        flex: 1;
+        width: auto;
+        max-width: none;
+        height: 250px;          /* 固定高度 */
+        overflow-y: auto;
+    }
+    .dialog-box::after {
+        left: -8px;
+        top: 15px;
+        border-width: 6px 8px 6px 0;
+    }
+    .dialog-text {
+        font-size: 12px;
+    }
+
+    /* 右侧产品滚动区域：竖向滚动动画 */
+    .product-scroll-container {
+        height: 400px;
+        max-height: 400px;
+        overflow: hidden;
+        mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+        -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+    }
+    .product-scroll-list {
+        display: flex;
+        flex-direction: column;
+        animation: scrollProducts 20s linear infinite;
+    }
+    .product-scroll-list:hover {
+        animation-play-state: paused;
+    }
+    .product-item {
+        width: 80%;
+        margin: 12px auto;
+    }
+    .product-item img {
+        max-width: 140px;
+        width: auto;
+    }
+
+    /* 修改“Same Product Click Here”字号与Event Info一致（手机端Event Info为24px） */
+    .section-title-main,
+    .section-title-sub {
+        font-size: 24px;
+    }
+
+    /* 统一各区域上下间距，使布局舒适 */
+    .center-area {
+        gap: 50px;
+    }
+    .event-section {
+        margin-top: 0;
+        margin-bottom: 30px;
+    }
+    .footer-section {
+        margin-top: 40px;
+    }
+    .join-button {
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    /* 事件区域调整 */
+    .event-title {
+        font-size: 24px;
+    }
+    .event-description {
+        font-size: 12px;
+        max-height: 300px;
+    }
+    .footer-message {
+        font-size: 12px;
+        padding: 15px;
+    }
+    .contact-info {
+        gap: 16px;
+        font-size: 12px;
+    }
+    .contact-item i {
+        font-size: 14px;
+    }
+}

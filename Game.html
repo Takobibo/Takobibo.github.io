@@ -1,0 +1,88 @@
+<!-- Game.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>SUPERGO | Double Challenge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Game.css">
+</head>
+<body>
+    <!-- 加载页面（Loading Screen）与主页风格一致，黄色背景 -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-divider top-divider"></div>
+        <div class="loading-content">
+            <img src="SUPERGO LOGO.png" alt="SUPERGO" class="loading-logo">
+            <div class="loading-animation-container">
+                <img id="loadingAnimationImg" src="电视人游戏界面加载动作1.png" alt="loading animation">
+            </div>
+            <div class="loading-bar-container">
+                <div class="loading-bar"></div>
+            </div>
+        </div>
+        <div class="loading-divider bottom-divider"></div>
+    </div>
+
+    <!-- 返回箭头（固定定位，白色） -->
+    <a href="index.html" class="back-arrow" aria-label="Back to Home">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <div class="game-container">
+        <canvas id="gameCanvas" width="1200" height="700"></canvas>
+
+        <!-- 开始界面 -->
+        <div id="startScreen" class="start-screen">
+            <img src="游戏标题.png" alt="Game Title" class="game-title-img">
+            <button id="startBtn" class="start-btn">START GAME</button>
+        </div>
+
+        <!-- 游戏结束/胜利界面 -->
+        <div id="endScreen" class="end-screen" style="display: none;">
+            <img id="endTitleImg" src="" alt="" class="end-title-img">
+            <div id="scoreDisplay" class="score-display"></div>
+            <div class="button-group" id="buttonGroup">
+                <button id="restartBtn" class="restart-btn">RESTART</button>
+                <button id="nextLevelBtn" class="next-level-btn">NEXT LEVEL</button>
+                <button id="prevLevelBtn" class="prev-level-btn" style="display: none;">PREVIOUS LEVEL</button>
+            </div>
+        </div>
+
+        <!-- 顶部UI -->
+        <div class="game-ui">
+            <div class="score-board" id="scoreBoard"></div>
+            <div class="sound-toggle" id="soundToggle">
+                <i class="fas fa-volume-up" id="soundIcon"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- 游戏规则区域（无背景、白色字体、轻微模糊） -->
+    <div class="game-rules">
+        <div class="rules-text">
+            <p><strong>GAME RULES</strong><br>
+            Catch the correct falling products according to the phase.<br>
+            Phase 1 (0-20s): ManMilk<br>
+            Phase 2 (20-40s): Good Wife's Jam<br>
+            Phase 3 (40-60s): Ego Eggs<br>
+            Use A/D or Arrow Keys to move left/right.<br>
+            Avoid catching wrong items — game ends immediately.<br>
+            Survive 60 seconds to win!<br>
+            <strong>Double Challenge Level 2:</strong><br>
+            Press SPACE to jump (double jump allowed).<br>
+            Jump over gaps and catch floating products.<br>
+            Falling into a gap ends the game.</p>
+        </div>
+        <div class="rules-contact">
+            <a href="#" class="contact-item"><i class="fab fa-instagram"></i> @supergo_official</a>
+            <a href="#" class="contact-item"><i class="fab fa-tiktok"></i> @supergo_tiktok</a>
+            <a href="#" class="contact-item"><i class="fas fa-phone-alt"></i> +86 XXX-XXXX-XXXX</a>
+            <a href="#" class="contact-item"><i class="fas fa-envelope"></i> contact@supergo.model</a>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="Game.js"></script>
+</body>
+</html>

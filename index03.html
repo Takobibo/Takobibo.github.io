@@ -1,0 +1,132 @@
+<!-- index03.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SUPERGO | 互动体验</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style03.css">
+</head>
+<body>
+<div id="introOverlay" class="intro-overlay">
+    <div class="intro-text">
+        THE<br>
+        FRIDGESCAPING<br>
+        CHALLENGE
+    </div>
+</div>
+<div class="bg-gradient"></div>
+
+<!-- 导航栏（与主页一致） -->
+<nav class="navbar">
+    <div class="nav-logo">
+        <img src="SUPERGO LOGO.png" alt="SUPERGO">
+    </div>
+    <div class="nav-links">
+        <a href="#">Privacy</a>
+        <span>/</span>
+        <a href="#">Contact</a>
+        <span>/</span>
+        <a href="#">Terms</a>
+    </div>
+</nav>
+
+<!-- 返回箭头 -->
+<a href="index.html" class="back-arrow" aria-label="Back to Home">
+    <i class="fas fa-arrow-left"></i>
+</a>
+
+<div class="main-container">
+    <!-- 左侧固定区域（冰箱下方聊天区） -->
+    <div class="left-fixed" id="leftFixed">
+        <div class="chat-container">
+            <div class="avatar-area">
+                <img id="smallAvatar" class="avatar-small" src="头像1.png" alt="角色头像">
+                <div id="characterName" class="character-name">Mrs. Li</div>
+            </div>
+            <div id="dialogBox" class="dialog-box">
+                <div id="dialogText" class="dialog-text"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="center-area">
+        <div class="carousel-section">
+            <div class="carousel-container" id="carouselContainer">
+                <!-- 冰箱外壳遮罩层 -->
+                <div id="fridgeCover" class="fridge-cover">
+                    <img id="fridgeCoverImg" src="冰箱外壳.png" alt="冰箱外壳">
+                </div>
+                <!-- 透明底提醒图片（手机端隐藏） -->
+                <div id="reminderImage" class="reminder-image">
+                    <img src="开启提醒.png" alt="打开冰箱提醒">
+                </div>
+                <!-- 透明底大头像 -->
+                <div class="large-avatar" id="largeAvatar">
+                    <img src="大头像1.png" alt="角色大头像">
+                </div>
+                <!-- 贴纸容器 -->
+                <div id="stickersContainer" class="stickers-container"></div>
+                <!-- 轮播图主体 -->
+                <div class="carousel-wrapper">
+                    <img id="carouselImage" class="carousel-image" src="SUPERGO冰箱02.png" alt="轮播图">
+                </div>
+                <button class="carousel-arrow left-arrow" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-arrow right-arrow" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="progress-bar-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+        </div>
+        <div class="event-section">
+            <div class="event-info">
+                <h2 class="event-title">Event Info</h2>
+                <div class="event-description">
+                    <p>SUPERGO encourages all participants to take on the "Fridge Landscape Challenge"! Decorate your refrigerator with SUPERGO products and showcase your unique creativity.</p>
+                    <p>How to participate:<br>1. Fill your fridge with SUPERGO products (any combination of our items).<br>2. Take a high-quality photo of your decorated fridge interior.<br>3. Upload the photo to our official website or social media with the hashtag #SUPERGOFridgeChallenge.</p>
+                    <p>Selection & Prizes:<br>A panel of SUPERGO designers and lifestyle experts will select four winners based on creativity, aesthetic appeal, and originality.<br>Grand Prize (1 winner): A year's supply of SUPERGO products + $500 gift card.<br>Excellence Awards (3 winners): $200 gift card each + a SUPERGO mystery box.</p>
+                    <p>Additional perks for all participants:<br>Every valid entry receives a 10% discount code for your next SUPERGO purchase.<br>Top 20 finalists will have their fridge landscapes featured on our official social media channels.</p>
+                    <p>Judging criteria:<br>- Creativity and originality (40%)<br>- Visual appeal and composition (30%)<br>- Effective use of SUPERGO products (20%)<br>- Storytelling / theme (10%)</p>
+                    <p>Important dates:<br>Submission opens: April 1, 2025<br>Submission deadline: December 31, 2025<br>Finalist announcement: January 15, 2026<br>Winners announced: January 30, 2026</p>
+                    <p>Terms & conditions:<br>By participating, you grant SUPERGO the right to use your submitted images for promotional purposes. Winners will be notified via email. Prizes are non-transferable. SUPERGO reserves the right to disqualify any entry that violates our community guidelines.</p>
+                    <p>Submission deadline: December 31, 2025. Winners will be announced on our official channels within 30 days after the deadline. Don't miss this chance to turn your fridge into a masterpiece – and win amazing prizes!</p>
+                    <p>SUPERGO – where everyday storage becomes art.</p>
+                </div>
+            </div>
+            <button id="joinBtn" class="join-button">Join Now</button>
+        </div>
+        <div class="footer-section">
+            <div class="footer-message">
+                <p>Welcome to SUPERGO, we are committed to fulfilling your every wish,<br>leaving no desire unsatisfied. Every product here is flawless,<br>bringing you and your family the joy of being in paradise.</p>
+                <i class="far fa-smile-wink smile-icon"></i>
+            </div>
+            <div class="contact-info">
+                <a href="#" class="contact-item"><i class="fab fa-instagram"></i> @supergo_official</a>
+                <a href="#" class="contact-item"><i class="fab fa-tiktok"></i> @supergo_tiktok</a>
+                <a href="#" class="contact-item"><i class="fas fa-phone-alt"></i> +86 XXX-XXXX-XXXX</a>
+                <a href="#" class="contact-item"><i class="fas fa-envelope"></i> contact@supergo.model</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-area" id="rightArea">
+        <div class="section-header">
+            <div class="section-title-main">Same Products</div>
+            <div class="section-title-sub">Click Here</div>
+        </div>
+        <div class="product-scroll-container" id="productScrollContainer">
+            <div class="product-scroll-list" id="productScrollList"></div>
+        </div>
+    </div>
+</div>
+
+<!-- 背景音乐控制按钮 -->
+<div id="musicControl" class="music-control">
+    <i class="fas fa-volume-mute"></i>
+</div>
+
+<script src="script03.js"></script>
+</body>
+</html>

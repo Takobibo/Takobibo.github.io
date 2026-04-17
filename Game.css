@@ -1,0 +1,471 @@
+/* Game.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    background: #FFC60B;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    padding: 80px 20px; /* 为返回箭头和上下留出空间，实现垂直居中 */
+}
+
+/* 页面背景移动小圆圈（与主页一致） */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at center, #FFD857 20%, transparent 20.5%);
+    background-size: 60px 60px;
+    background-repeat: repeat;
+    opacity: 0.3;
+    pointer-events: none;
+    animation: moveCircles 15s linear infinite;
+    z-index: 0;
+}
+
+@keyframes moveCircles {
+    0% { background-position: 0 0; }
+    100% { background-position: 60px 60px; }
+}
+
+/* ========== 加载页面（与主页风格一致，黄色背景） ========== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFC60B;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+
+.loading-divider {
+    width: 100%;
+    height: 40px;
+    background-color: #FFC60B;
+    background-image: url('SUPERGO LOGO.png');
+    background-repeat: repeat-x;
+    background-position: center;
+    background-size: auto 30px;
+    animation: scrollLogo 20s linear infinite;
+}
+
+.loading-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.loading-logo {
+    max-height: 80px;
+    width: auto;
+}
+
+.loading-animation-container {
+    width: 150px;
+    margin: 0 auto;
+}
+
+.loading-animation-container img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    display: block;
+}
+
+.loading-bar-container {
+    width: 300px;
+    height: 6px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.loading-bar {
+    width: 30%;
+    height: 100%;
+    background-color: #000000;
+    border-radius: 10px;
+    animation: loadingMove 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingMove {
+    0% { transform: translateX(-100%); width: 30%; }
+    50% { transform: translateX(200%); width: 60%; }
+    100% { transform: translateX(-100%); width: 30%; }
+}
+
+@keyframes scrollLogo {
+    0% { background-position: 0 50%; }
+    100% { background-position: -200px 50%; }
+}
+
+/* 返回箭头（白色） */
+.back-arrow {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 48px;
+    color: white;          /* 改为白色 */
+    letter-spacing: -1px;
+    filter: blur(1.2px);
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    display: inline-block;
+    line-height: 1;
+    text-decoration: none;
+    z-index: 101;
+    /* 移除 mix-blend-mode 确保白色可见 */
+}
+
+.back-arrow:hover {
+    transform: scale(1.05);
+    animation: arrowShake 0.2s ease-in-out 0s 2;
+}
+
+@keyframes arrowShake {
+    0% { transform: translateX(0) scale(1.05); }
+    25% { transform: translateX(-3px) scale(1.05); }
+    75% { transform: translateX(3px) scale(1.05); }
+    100% { transform: translateX(0) scale(1.05); }
+}
+
+.game-container {
+    position: relative;
+    width: 1200px;
+    height: 700px;
+    border-radius: 28px;
+    box-shadow: 0 25px 40px rgba(0,0,0,0.4);
+    background: #2c3e2f;
+    overflow: hidden;
+    z-index: 1;
+    margin: 20px auto; /* 垂直方向自动居中 */
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: none;
+}
+
+.start-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+.game-title-img {
+    max-width: 60%;
+    margin-bottom: 40px;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+    animation: float 2s ease-in-out infinite;
+}
+
+.start-btn, .restart-btn, .next-level-btn, .prev-level-btn {
+    font-size: 24px;
+    font-weight: 700;
+    padding: 12px 32px;
+    background: #ffd966;
+    border: none;
+    border-radius: 60px;
+    color: #2c3e2f;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 0 #b97f10;
+    margin: 8px;
+}
+
+.start-btn:hover, .restart-btn:hover, .next-level-btn:hover, .prev-level-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 0 #b97f10;
+}
+
+.start-btn:active, .restart-btn:active, .next-level-btn:active, .prev-level-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 4px 0 #b97f10;
+}
+
+.next-level-btn {
+    background: #4caf50;
+    color: white;
+    box-shadow: 0 8px 0 #1e5a1e;
+}
+
+.prev-level-btn {
+    background: #2196f3;
+    color: white;
+    box-shadow: 0 8px 0 #0b5e7e;
+}
+
+.button-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.end-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(6px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    gap: 20px;
+}
+
+.end-title-img {
+    max-width: 50%;
+    margin-bottom: 10px;
+}
+
+.score-display {
+    background: rgba(0,0,0,0.6);
+    padding: 16px 32px;
+    border-radius: 48px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #ffecb3;
+    text-align: center;
+    backdrop-filter: blur(4px);
+}
+
+.game-ui {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 15;
+    pointer-events: none;
+}
+
+.score-board {
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+    border-radius: 60px;
+    padding: 8px 18px;
+    display: flex;
+    gap: 20px;
+    pointer-events: auto;
+    font-weight: 600;
+    color: #fff3cf;
+}
+
+.score-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+}
+
+.score-item img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
+}
+
+.sound-toggle {
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: 0.2s;
+}
+
+.sound-toggle i {
+    font-size: 28px;
+    color: #ffd966;
+}
+
+.sound-toggle:hover {
+    background: rgba(0,0,0,0.8);
+    transform: scale(1.05);
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* 游戏规则区域：无背景、白色字体、轻微高斯模糊 */
+.game-rules {
+    text-align: center;
+    margin: 20px auto 40px;
+    padding: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;                /* 白色字体 */
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+    background: transparent;     /* 无背景 */
+    border-radius: 0;
+    max-width: 1100px;
+    width: 90%;
+    z-index: 1;
+    filter: blur(0.6px);         /* 高斯模糊效果 */
+}
+
+.rules-text p {
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.rules-contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
+
+.contact-item {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.contact-item i {
+    font-size: 16px;
+}
+
+.contact-item:hover {
+    opacity: 0.8;
+}
+
+/* ========== 手机端专用样式（覆盖加载页内容） ========== */
+@media (max-width: 800px) {
+    /* 手机端加载页特殊样式 */
+    .loading-screen .mobile-message {
+        text-align: center;
+        color: white;
+        font-size: 18px;
+        padding: 20px;
+        max-width: 80%;
+        margin: 0 auto;
+        line-height: 1.5;
+    }
+    
+    /* 手机端左上角返回箭头（在分割条之下） */
+    .loading-screen .mobile-back-arrow {
+        position: absolute;
+        top: 60px;  /* 分割条高度40px + 额外间距 */
+        left: 20px;
+        font-size: 36px;
+        color: white;
+        cursor: pointer;
+        z-index: 10001;
+        text-decoration: none;
+        transition: transform 0.2s;
+    }
+    .loading-screen .mobile-back-arrow:hover {
+        transform: scale(1.05);
+    }
+    
+    /* 隐藏原加载内容中的元素（由JS动态移除，但为了保险也设置隐藏） */
+    .loading-screen .loading-logo,
+    .loading-screen .loading-animation-container,
+    .loading-screen .loading-bar-container {
+        display: none;
+    }
+}
+
+/* 响应式（电脑端原有） */
+@media (max-width: 1100px) {
+    .game-container {
+        width: 95%;
+        height: auto;
+        aspect-ratio: 1200 / 700;
+    }
+    .back-arrow {
+        font-size: 36px;
+        top: 15px;
+        left: 15px;
+    }
+    body {
+        padding: 70px 15px;
+    }
+}
+
+@media (max-width: 800px) {
+    .back-arrow {
+        font-size: 28px;
+        top: 10px;
+        left: 10px;
+    }
+    .rules-text p {
+        font-size: 14px;
+    }
+    .rules-contact {
+        gap: 16px;
+        font-size: 12px;
+    }
+    .contact-item i {
+        font-size: 14px;
+    }
+    body {
+        padding: 60px 10px;
+    }
+}
